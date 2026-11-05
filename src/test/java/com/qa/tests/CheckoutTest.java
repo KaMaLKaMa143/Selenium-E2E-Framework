@@ -7,23 +7,28 @@ import com.qa.base.BaseTest;
 import com.qa.pages.LoginPage;
 import com.qa.pages.ProductsPage;
 import com.qa.pages.CheckoutPage;
+import Utils.ProductDataScraper;
 
 @Listeners(com.qa.listeners.Listeners.class)
 public class CheckoutTest extends BaseTest 
 {
 	@Test
-	public void checkoutToEnd()
+    public void checkoutToEnd()
 	{
-		LoginPage log=new LoginPage(driver);
-		log.login(url, username, password);
-		
-		ProductsPage pp=new ProductsPage(driver);
-		pp.addItemandCheckout();
-		
-		CheckoutPage cop=new CheckoutPage(driver);
-		cop.fillCheckoutDetails(lastname, firstname, zipcode);
+        LoginPage log = new LoginPage(driver);
+        log.login(url, username, password);
+        
+        ProductDataScraper.scrapeAndSaveProducts(driver);
 
-		
-	}
+        ProductsPage pp = new ProductsPage(driver);
+        pp.addItemandCheckout();
+
+        CheckoutPage cop = new CheckoutPage(driver);
+        cop.fillCheckoutDetails(lastname, firstname, zipcode);	
+        
+	 }  
+        
+		   
+	
 
 }

@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.tests.CheckoutTest">
+      <class name="com.qa.api.tests.ApiAutomationTest">
         <methods>
-          <include name="checkoutToEnd"/>
-          <include name="setup"/>
+          <include name="testCreateUser"/>
         </methods>
-      </class> <!-- com.qa.tests.CheckoutTest -->
+      </class> <!-- com.qa.api.tests.ApiAutomationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
