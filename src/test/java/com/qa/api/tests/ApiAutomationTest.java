@@ -1,6 +1,8 @@
 package com.qa.api.tests;
 
 import org.testng.annotations.Test;
+
+import io.opentelemetry.api.trace.StatusCode;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.*;
@@ -42,6 +44,38 @@ public class ApiAutomationTest
 		.body("job",equalTo("QA Automation Engineer"))
 		.body("id", notNullValue())
 		.log().all();
+	}
+	
+	//3.Automating Put request(update)
+	@Test(priority=3)
+	public void testUpdateUser()
+	{
+		RestAssured.baseURI="https://reqres.in";
+		String updateBody="{\"name\":\"Kamal Kumar\",\"job\":\"Senior SDET\"}";
+		given()
+		.contentType(ContentType.JSON)
+		.body(updateBody)
+		.when()
+		.put("/api/users/2")
+		.then()
+		.statusCode(200)
+		.body("job",equalTo("Senior SDET"))
+		.log().all();
+		
+	}
+	
+	//4.Automating DELETE request
+	@Test(priority=4)
+	public void testDeleteUser()
+	{
+		RestAssured.baseURI="https://reqres.in";
+		given()
+		.when()
+		.delete("/api/users/2")
+	    .then()
+		.statusCode(204)
+		.log().all();
+		
 	}
 
 }
